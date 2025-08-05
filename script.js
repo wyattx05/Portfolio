@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTitle = document.querySelector('.hero h1');
     if (heroTitle) {
         const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 60); // Faster speed: 60ms instead of 100ms
+        typeWriter(heroTitle, originalText, 60); // Fast typing speed
     }
 });
 

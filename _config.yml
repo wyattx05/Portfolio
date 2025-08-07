@@ -1,0 +1,38 @@
+# Jekyll Configuration for GitHub Pages
+title: "Wyatt Anderson - Portfolio"
+description: "Information Systems student and tech enthusiast portfolio"
+baseurl: ""
+url: "https://wyattx05.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+
+# Include files that would normally be excluded
+include:
+  - _pages
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO settings
+author: Wyatt Anderson
+twitter:
+  username: wyattx05
+social:
+  name: Wyatt Anderson
+  links:
+    - https://github.com/wyattx05
+    - https://linkedin.com/in/wyattanderson

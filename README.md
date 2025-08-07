@@ -30,8 +30,9 @@ Breif discription of the site layout:
 - Hero Section: Introdcution, Name, & Quick Links
 - About Me: Small blurb about me and what I am currently focused on
 - Skills & Technologies: Current skills I have and am exploring
-- Featured Projects: Top projects I am showcasing
-- Get In Touch: Quick links to my Email, GitHub, and LinkedIn
+- Featured Projects & Certifications: Top projects I am showcasing & my certifications
+- Recent Events: Showcasing what I have been doing recently
+- Get In Touch: Quick links to my Email, GitHub, LinkedIn, & more
 
 ## 🎨 Color Scheme
 

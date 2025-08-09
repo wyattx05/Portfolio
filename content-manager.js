@@ -1,40 +1,73 @@
-// Content Management System
+// Portfolio Content Management System
 class ContentManager {
     constructor() {
         this.content = null;
+        this.initialized = false;
+        this.fallbackContent = this.getFallbackContent();
         this.init();
     }
 
     async init() {
+        if (this.initialized) return;
+        
         await this.loadContent();
         this.renderContent();
+        this.initialized = true;
     }
 
     async loadContent() {
         try {
-            // Try to load from API first (if server is running)
+            // Try API first (local development)
             const response = await fetch('/api/content');
             if (response.ok) {
                 this.content = await response.json();
                 return;
             }
         } catch (error) {
-            console.log('API not available, falling back to static file');
+            console.log('API not available, loading from static file');
         }
         
         try {
-            // Fallback to static JSON file
-            const response = await fetch('data/content.json');
-            this.content = await response.json();
+            // Fallback to static JSON (production)
+            const response = await fetch(`data/content.json?t=${Date.now()}`);
+            if (response.ok) {
+                this.content = await response.json();
+                return;
+            }
         } catch (error) {
-            console.error('Error loading content:', error);
-            // Fallback to static content if JSON fails to load
+            console.warn('Content file not available, using fallback');
         }
+        
+        // Final fallback to hardcoded content
+        this.content = this.fallbackContent;
+    }
+
+    getFallbackContent() {
+        return {
+            personalInfo: {
+                name: "Wyatt Anderson",
+                title: "Information Systems Student & Tech Enthusiast",
+                profileImage: "assets/images/profile.jpeg",
+                resumePath: "assets/documents/Resume.pdf",
+                email: "whanderson024@gmail.com",
+                aboutText: [
+                    "I am a dedicated Information Systems student at Virginia Commonwealth University with a passion for technology and innovation.",
+                    "My focus areas include AI, data analysis, and system administration, with hands-on experience in Python, Docker, and various development frameworks."
+                ],
+                socialLinks: {
+                    linkedin: "https://www.linkedin.com/in/wyatt-anderson609",
+                    github: "https://github.com/wyattx05",
+                    instagram: "https://instagram.com/wyattx05",
+                    handshake: "https://app.joinhandshake.com/profiles/6pd9rm"
+                }
+            }
+        };
     }
 
     renderContent() {
         if (!this.content) return;
         
+        this.renderPersonalInfo();
         this.renderProjects();
         this.renderCertifications();
         this.renderUpdates();
@@ -237,9 +270,180 @@ class ContentManager {
         this.content.updates = this.content.updates.filter(u => u.id !== id);
         this.renderUpdates();
     }
+
+    renderPersonalInfo() {
+        // Set default content first
+        const heroTitle = document.querySelector('.hero-content h1');
+        const heroSubtitle = document.querySelector('.hero-content h2');
+        const profileImage = document.querySelector('.profile-photo');
+        const resumeLink = document.querySelector('a[download]');
+        
+        // Set defaults if no content loaded
+        if (!this.content?.personalInfo) {
+            if (heroTitle) this.typeWriter(heroTitle, "Hi, I'm Wyatt Anderson", 60);
+            if (heroSubtitle) heroSubtitle.textContent = "Information Systems Student & Tech Enthusiast";
+            if (profileImage) profileImage.src = "assets/images/profile.jpeg";
+            if (resumeLink) {
+                resumeLink.href = "assets/documents/Resume.pdf";
+                resumeLink.setAttribute('download', 'Wyatt_Anderson_Resume.pdf');
+            }
+            
+            // Set default about-links
+            const aboutLinks = document.querySelector('.about-links');
+            if (aboutLinks) {
+                aboutLinks.innerHTML = `
+                    <a href="mailto:whanderson024@gmail.com" class="about-icon-btn" title="Email me">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/wyatt-anderson609" target="_blank" class="about-icon-btn" title="LinkedIn Profile">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                `;
+            }
+            return;
+        }
+
+        const personal = this.content.personalInfo;
+        
+        if (heroTitle) {
+            this.typeWriter(heroTitle, `Hi, I'm ${personal.name}`, 60);
+        }
+        if (heroSubtitle) heroSubtitle.textContent = personal.title;
+        if (profileImage && personal.profileImage) profileImage.src = personal.profileImage;
+        if (resumeLink && personal.resumePath) {
+            resumeLink.href = personal.resumePath;
+            resumeLink.setAttribute('download', 'Wyatt_Anderson_Resume.pdf');
+        }
+        
+        // Update about section
+        const aboutText = document.querySelector('.about-text');
+        if (aboutText && personal.aboutText) {
+            const paragraphs = aboutText.querySelectorAll('p');
+            if (paragraphs.length >= 2) {
+                paragraphs[0].textContent = personal.aboutText[0];
+                paragraphs[1].textContent = personal.aboutText[1];
+            }
+        }
+        
+        // Update about-links section
+        const aboutLinks = document.querySelector('.about-links');
+        if (aboutLinks && personal.email) {
+            aboutLinks.innerHTML = `
+                <a href="mailto:${personal.email}" class="about-icon-btn" title="Email me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="${personal.socialLinks?.linkedin || '#'}" target="_blank" class="about-icon-btn" title="LinkedIn Profile">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            `;
+        }
+        
+        // Update contact section with dynamic social links
+        this.renderSocialLinks();
+    }
+
+    renderSocialLinks() {
+        const socialLinksContainer = document.querySelector('.secondary-contacts');
+        if (!socialLinksContainer || !this.content?.personalInfo?.socialLinks) return;
+
+        const socialLinks = this.content.personalInfo.socialLinks;
+        
+        // Define icon mapping for common social platforms
+        const iconMapping = {
+            'linkedin': 'fab fa-linkedin',
+            'github': 'fab fa-github', 
+            'instagram': 'fab fa-instagram',
+            'twitter': 'fab fa-twitter',
+            'facebook': 'fab fa-facebook',
+            'youtube': 'fab fa-youtube',
+            'tiktok': 'fab fa-tiktok',
+            'discord': 'fab fa-discord',
+            'twitch': 'fab fa-twitch',
+            'handshake': 'fas fa-handshake',
+            'portfolio': 'fas fa-globe',
+            'website': 'fas fa-globe',
+            'email': 'fas fa-envelope',
+            'phone': 'fas fa-phone',
+            'resume': 'fas fa-file-alt',
+            'cv': 'fas fa-file-alt',
+            'behance': 'fab fa-behance',
+            'dribbble': 'fab fa-dribbble'
+        };
+
+        // Get icon from data attribute or use default based on platform name
+        const getIcon = (key, customIcon) => {
+            if (customIcon) return customIcon;
+            const lowerKey = key.toLowerCase();
+            return iconMapping[lowerKey] || 'fas fa-link';
+        };
+
+        // Generate HTML for all social links
+        socialLinksContainer.innerHTML = Object.entries(socialLinks)
+            .map(([key, urlOrData]) => {
+                // Handle both old format (string) and new format (object with icon)
+                const url = typeof urlOrData === 'string' ? urlOrData : urlOrData.url;
+                const icon = typeof urlOrData === 'object' ? urlOrData.icon : null;
+                const title = this.capitalizeFirst(key);
+                
+                return `
+                    <div class="contact-method">
+                        <i class="${getIcon(key, icon)}"></i>
+                        <div>
+                            <h4>${title}</h4>
+                            <p><a href="${url}" target="_blank">${this.formatLinkText(url, title)}</a></p>
+                        </div>
+                    </div>
+                `;
+            })
+            .join('');
+    }
+
+    capitalizeFirst(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    formatLinkText(url, title) {
+        // Format URL display text based on platform
+        try {
+            const urlObj = new URL(url);
+            const domain = urlObj.hostname.replace('www.', '');
+            
+            if (url.includes('linkedin.com')) {
+                return domain + urlObj.pathname;
+            } else if (url.includes('github.com')) {
+                return domain + urlObj.pathname;
+            } else if (url.includes('instagram.com')) {
+                return '@' + urlObj.pathname.replace('/', '');
+            } else if (url.includes('twitter.com')) {
+                return '@' + urlObj.pathname.replace('/', '');
+            } else {
+                return domain;
+            }
+        } catch (e) {
+            return url;
+        }
+    }
+
+    // Typing animation function
+    typeWriter(element, text, speed = 60) {
+        let i = 0;
+        element.innerHTML = '';
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        
+        type();
+    }
 }
 
 // Initialize content manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    window.contentManager = new ContentManager();
+    if (!window.contentManager) {
+        window.contentManager = new ContentManager();
+    }
 });

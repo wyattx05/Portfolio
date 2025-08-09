@@ -1,3 +1,6 @@
+// Portfolio Interactive Features - Optimized
+// Handles navigation, scrolling, and animations
+
 // Mobile Navigation Toggle
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
@@ -58,26 +61,5 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Typing animation for hero section
-    const heroTitle = document.querySelector('.hero h1');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 60); // Fast typing speed
-    }
+    // Note: Typing animation now handled by content-manager.js
 });
-
-// Typing animation function
-function typeWriter(element, text, speed = 60) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}

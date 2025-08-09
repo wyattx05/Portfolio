@@ -1,20 +1,33 @@
 # Wyatt Anderson - Portfolio Website
 
-Welcome to my personal portfolio! I built this website to showcase what I'm working on, my skills, quick ways to contact me, and other things I may add in the future.
+A modern, responsive portfolio website with an integrated Content Management System for easy updates without code editing.
 
 ## 🌐 Live Website
-
-Visit the live website at: [https://wyattx05.github.io/Portfolio](https://wyattx05.github.io/Portfolio)
+[View Portfolio](https://wyattx05.github.io/Portfolio)
 
 ## ✨ Features
 
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
-- **Modern UI/UX**: Clean, professional design with smooth animations
-- **Interactive Navigation**: Smooth scrolling and a mobile-friendly menu
-- **Project Showcase**: Dedicated section for featuring my best work
-- **Skills Display**: Visual representation of my technical skills
-- **Contact Form**: A functional contact form for potential collaborators
-- **Fast Loading**: Optimized for performance and SEO
+### **Dynamic Content Management**
+- Edit projects, certifications, updates, and personal info through admin panel
+- Auto-save functionality with backup system
+- Real-time preview of changes
+- Social media link management with icon customization
+
+### **Portfolio Sections**
+- **Hero Section** - Dynamic name typing animation and profile photo
+- **About** - Personal information with social links
+- **Skills** - Technology and expertise showcase
+- **Projects** - Featured work with links and tags
+- **Certifications** - Professional achievements
+- **Updates** - Recent news and accomplishments
+- **Contact** - Multiple contact methods
+
+### **Technical Features**
+- Fully responsive design (mobile-first)
+- Smooth scrolling navigation
+- Intersection Observer animations
+- GitHub Pages compatible
+- Progressive Web App ready
 
 ## 🛠️ Technologies Used
 

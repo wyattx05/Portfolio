@@ -1,0 +1,19 @@
+# Development files (keep local only)
+/cms/
+/docs/
+/launch.sh
+
+# Development Dependencies
+node_modules/
+*.log
+.DS_Store
+.env
+
+# Backup files (keep local only)
+data/backups/
+
+# Temporary files
+*.tmp
+.cache/
+*.tmp
+*.bak

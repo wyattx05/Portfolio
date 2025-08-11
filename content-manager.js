@@ -147,6 +147,15 @@ class ContentManager {
                     <div class="update-content">
                         <h3>${update.title}</h3>
                         <p>${update.description}</p>
+                        ${update.links && update.links.length > 0 ? `
+                            <div class="update-links">
+                                ${update.links.map(link => `
+                                    <a href="${link.url}" class="update-link" target="_blank">
+                                        <i class="${this.getUpdateLinkIcon(link.type)}"></i> ${link.text}
+                                    </a>
+                                `).join('')}
+                            </div>
+                        ` : ''}
                         <span class="update-tag">${update.tag}</span>
                     </div>
                 </div>
@@ -177,6 +186,18 @@ class ContentManager {
             'github': 'fab fa-github',
             'website': 'fas fa-external-link-alt',
             'demo': 'fas fa-play',
+            'video': 'fas fa-video'
+        };
+        return icons[type] || 'fas fa-link';
+    }
+
+    getUpdateLinkIcon(type) {
+        const icons = {
+            'article': 'fas fa-newspaper',
+            'website': 'fas fa-external-link-alt',
+            'project': 'fas fa-folder-open',
+            'announcement': 'fas fa-bullhorn',
+            'photo': 'fas fa-camera',
             'video': 'fas fa-video'
         };
         return icons[type] || 'fas fa-link';
@@ -325,14 +346,22 @@ class ContentManager {
             }
         }
         
-        // Update about-links section
+        // Update about-links section (ensure LinkedIn resolves for object or array formats)
         const aboutLinks = document.querySelector('.about-links');
         if (aboutLinks && personal.email) {
+            let linkedinUrl = '#';
+            const sl = personal.socialLinks;
+            if (Array.isArray(sl)) {
+                const ln = sl.find(l => (l.label || '').toLowerCase().includes('linkedin'));
+                linkedinUrl = ln?.url || '#';
+            } else if (sl && sl.linkedin) {
+                linkedinUrl = typeof sl.linkedin === 'string' ? sl.linkedin : (sl.linkedin.url || '#');
+            }
             aboutLinks.innerHTML = `
                 <a href="mailto:${personal.email}" class="about-icon-btn" title="Email me">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="${personal.socialLinks?.linkedin || '#'}" target="_blank" class="about-icon-btn" title="LinkedIn Profile">
+                <a href="${linkedinUrl}" target="_blank" class="about-icon-btn" title="LinkedIn Profile">
                     <i class="fab fa-linkedin"></i>
                 </a>
             `;
@@ -346,7 +375,17 @@ class ContentManager {
         const socialLinksContainer = document.querySelector('.secondary-contacts');
         if (!socialLinksContainer || !this.content?.personalInfo?.socialLinks) return;
 
-        const socialLinks = this.content.personalInfo.socialLinks;
+        const raw = this.content.personalInfo.socialLinks;
+        
+        // Normalize into array of { label, url, icon }
+        const linksArray = Array.isArray(raw)
+            ? raw
+            : Object.entries(raw).map(([key, urlOrData]) => ({
+                label: this.capitalizeFirst(key),
+                url: typeof urlOrData === 'string' ? urlOrData : urlOrData.url,
+                icon: typeof urlOrData === 'object' ? urlOrData.icon : null,
+                key
+            }));
         
         // Define icon mapping for common social platforms
         const iconMapping = {
@@ -370,27 +409,24 @@ class ContentManager {
             'dribbble': 'fab fa-dribbble'
         };
 
-        // Get icon from data attribute or use default based on platform name
-        const getIcon = (key, customIcon) => {
+        const getIconClass = (label, customIcon, key) => {
             if (customIcon) return customIcon;
-            const lowerKey = key.toLowerCase();
-            return iconMapping[lowerKey] || 'fas fa-link';
+            const lookup = (label || key || '').toString().toLowerCase();
+            return iconMapping[lookup] || 'fas fa-link';
         };
 
         // Generate HTML for all social links
-        socialLinksContainer.innerHTML = Object.entries(socialLinks)
-            .map(([key, urlOrData]) => {
-                // Handle both old format (string) and new format (object with icon)
-                const url = typeof urlOrData === 'string' ? urlOrData : urlOrData.url;
-                const icon = typeof urlOrData === 'object' ? urlOrData.icon : null;
-                const title = this.capitalizeFirst(key);
-                
+        socialLinksContainer.innerHTML = linksArray
+            .map(link => {
+                const iconClass = getIconClass(link.label, link.icon, link.key);
+                const title = link.label || this.capitalizeFirst(link.key || 'Link');
+                const url = link.url || '#';
                 return `
                     <div class="contact-method">
-                        <i class="${getIcon(key, icon)}"></i>
+                        <i class="${iconClass}"></i>
                         <div>
                             <h4>${title}</h4>
-                            <p><a href="${url}" target="_blank">${this.formatLinkText(url, title)}</a></p>
+                            <p><a href="${url}" target="${url.startsWith('mailto:') ? '_self' : '_blank'}">${this.formatLinkText(url, title)}</a></p>
                         </div>
                     </div>
                 `;

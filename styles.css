@@ -52,9 +52,9 @@ body {
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 25px;
-    background: rgba(34, 197, 94, 0.3);
+    background: transparent;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(34, 197, 94, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .nav-menu {
@@ -69,15 +69,15 @@ body {
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 25px;
-    background: rgba(22, 101, 52, 0.3);
+    background: transparent;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(22, 101, 52, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .nav-link:hover {
     color: #ffffff;
-    background: rgba(34, 197, 94, 0.3);
-    border-color: rgba(34, 197, 94, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
     transform: translateY(-2px);
 }
 
@@ -163,42 +163,42 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    background: transparent;
     color: white;
     border: 2px solid white;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    background: transparent;
     color: white;
     border: 2px solid white;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
 .btn-resume {
-    background: linear-gradient(135deg, #166534, #22c55e);
+    background: transparent;
     color: white;
     border: 2px solid white;
 }
 
 .btn-resume:hover {
-    background: linear-gradient(135deg, #16a34a, #15803d);
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(22, 101, 52, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
 .hero-image {
@@ -283,7 +283,8 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #1e3a8a, #166534);
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -297,7 +298,8 @@ body {
 .about-icon-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #2563eb, #16a34a);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
 }
 
@@ -375,7 +377,7 @@ body {
 
 .project-image {
     height: 200px;
-    background: linear-gradient(135deg, #1e3a8a 0%, #166534 100%);
+    background: linear-gradient(135deg, var(--primary-color, #1e3a8a) 0%, var(--secondary-color, #166534) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -432,22 +434,22 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, #1e3a8a, #166534);
+    background: transparent;
     color: white;
     text-decoration: none;
     border-radius: 25px;
     font-weight: 600;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .project-link:hover {
-    background: linear-gradient(135deg, #2563eb, #16a34a);
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Subsections */
@@ -546,7 +548,7 @@ body {
 }
 
 .update-date {
-    background: linear-gradient(135deg, #1e3a8a, #166534);
+    background: linear-gradient(135deg, var(--primary-color, #1e3a8a), var(--secondary-color, #166534));
     color: white;
     padding: 0.75rem;
     border-radius: 8px;
@@ -596,6 +598,42 @@ body {
     border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
+/* Update Links */
+.update-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.update-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.update-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.update-link i {
+    font-size: 0.8rem;
+}
+
 /* Contact Section */
 .contact {
     padding: 4rem 0;
@@ -640,15 +678,16 @@ body {
 .primary-contact {
     width: 100%;
     justify-content: flex-start;
-    background: linear-gradient(135deg, #1e3a8a, #166534);
+    background: transparent;
     color: white;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     padding: 1.25rem;
 }
 
 .primary-contact:hover {
-    background: linear-gradient(135deg, #2563eb, #16a34a);
+    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .primary-contact i {
@@ -737,11 +776,6 @@ body {
 .contact-method p a:hover {
     color: #1e3a8a;
     text-decoration: underline;
-}
-
-.contact-method i {
-    color: #1e3a8a;
-    font-size: 1.5rem;
 }
 
 /* Footer */

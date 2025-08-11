@@ -35,8 +35,8 @@
       "links": [
         {
           "type": "website",
-          "url": "https://kingstreamhomesassociation.org",
-          "text": "Website"
+          "text": "Website",
+          "url": "https://kingstreamhomesassociation.org"
         }
       ],
       "featured": true,
@@ -80,8 +80,9 @@
       "description": "Beginning advanced coursework in Information Systems, AI, and machine learning.",
       "date": "2025-08-01",
       "tag": "Education",
-      "order": "1",
-      "featured": false
+      "order": 1,
+      "featured": false,
+      "links": []
     },
     {
       "id": "update_2",
@@ -89,7 +90,8 @@
       "description": "Took on the position of Webmaster for my business fraternity Alpha Kappa Psi and ISO: Information Systems Organization.",
       "date": "2025-06-01",
       "tag": "Leadership",
-      "order": 2
+      "order": 2,
+      "links": []
     },
     {
       "id": "update_3",
@@ -97,7 +99,8 @@
       "description": "Developed a business plan with my team proposing AI implementation for a manufacturing company.",
       "date": "2025-04-01",
       "tag": "Project",
-      "order": 3
+      "order": 3,
+      "links": []
     }
   ],
   "skills": [
@@ -111,7 +114,7 @@
     {
       "id": "skill_2",
       "title": "Python",
-      "description": "Programming and automation scripting",
+      "description": "Learning programming and automation scripting",
       "icon": "fab fa-python",
       "order": 2
     },
@@ -154,11 +157,77 @@
     "profileImage": "assets/images/profile.jpeg",
     "resumePath": "assets/documents/Resume.pdf",
     "email": "whanderson024@gmail.com",
-    "socialLinks": {
-      "linkedin": "https://www.linkedin.com/in/wyatt-anderson609",
-      "github": "https://github.com/wyattx05",
-      "instagram": "https://instagram.com/wyattx05",
-      "handshake": "https://app.joinhandshake.com/profiles/6pd9rm"
+    "socialLinks": [
+      {
+        "label": "Linkedin",
+        "url": "https://www.linkedin.com/in/wyatt-anderson609",
+        "icon": ""
+      },
+      {
+        "label": "Github",
+        "url": "https://github.com/wyattx05",
+        "icon": ""
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/wyattx05",
+        "icon": ""
+      },
+      {
+        "label": "Handshake",
+        "url": "https://app.joinhandshake.com/profiles/6pd9rm",
+        "icon": ""
+      }
+    ],
+    "themeSettings": {
+      "colors": {
+        "primary": "#1e3a8a",
+        "secondary": "#166534",
+        "accent": "#22c55e",
+        "card": "rgba(255, 255, 255, 0.1)"
+      },
+      "typography": {
+        "fontFamily": "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+        "headingSizeMultiplier": 1
+      },
+      "layout": {
+        "borderRadius": 15,
+        "shadowIntensity": 0.3,
+        "enableAnimations": true,
+        "enableBackgroundBlur": true
+      },
+      "background": {
+        "type": "gradient",
+        "color": "#0f172a",
+        "imageUrl": "",
+        "blur": 5,
+        "tint": "#000000",
+        "tintOpacity": 0.4
+      },
+      "sectionTitles": {
+        "underlineColor": "#60a5fa",
+        "underlineWidth": "80px",
+        "underlineHeight": "4px",
+        "underlineGlow": true
+      }
     }
+  },
+  "themeSettings": {
+    "primaryColor": "#1e3a8a",
+    "secondaryColor": "#1e40af",
+    "accentColor": "#3b82f6",
+    "backgroundGradient": true,
+    "gradientDirection": "135deg",
+    "borderRadius": "12px",
+    "shadowIntensity": 0.15,
+    "cardOpacity": 0.1,
+    "backgroundStartColor": "#0f172a",
+    "backgroundEndColor": "#1e293b",
+    "useBackgroundForMediaHeader": true,
+    "mediaHeaderStartColor": "#0B1020",
+    "mediaHeaderEndColor": "#1E293B",
+    "useBackgroundForUpdateDate": true,
+    "updateDateStartColor": "#0B1020",
+    "updateDateEndColor": "#1E293B"
   }
 }

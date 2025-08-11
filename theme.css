@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+/* Auto-generated theme styles - Enhanced Theme System */
+:root {
+    /* Colors */
+    --primary-color: #1e3a8a;
+    --secondary-color: #1e40af;
+    --accent-color: #3b82f6;
+    --card-color: rgba(30, 58, 138, 0.1);
+
+    /* Background gradient variables */
+    --bg-start-color: #0f172a;
+    --bg-end-color: #1e293b;
+    --media-header-start: #0f172a;
+    --media-header-end: #1e293b;
+    --update-date-start: #0f172a;
+    --update-date-end: #1e293b;
+    --gradient-direction: 135deg;
+    --use-background-gradient: 1;
+    
+    /* RGB versions for rgba usage */
+    --primary-color-rgb: 30, 58, 138;
+    --secondary-color-rgb: 30, 64, 175;
+    --accent-color-rgb: 59, 130, 246;
+    
+    /* Typography */
+    --font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+    --heading-size-multiplier: 1;
+    
+    /* Layout */
+    --border-radius: 12px;
+    --shadow-intensity: 0.15;
+}
+
+/* Apply theme variables to existing styles - preserve original design */
+body {
+    font-family: var(--font-family) !important;
+}
+
+/* Apply font to all text elements */
+body, h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select {
+    font-family: var(--font-family) !important;
+}
+
+/* Cards with customizable border radius */
+.skill-card, .project-card, .cert-card, .update-card, .about-text {
+    background: var(--card-color) !important;
+    border-radius: var(--border-radius) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, var(--shadow-intensity)) !important;
+}
+
+.contact-content {
+    background: var(--card-color) !important;
+    border-radius: var(--border-radius) !important;
+}
+
+/* Section title underlines - fully customizable through admin panel */
+.section-title::after {
+    background-color: #3b82f6 !important;
+    width: 80px !important;
+    height: 4px !important;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.6) !important;
+}
+
+/* Hero section buttons */
+.hero-buttons .btn {
+    border: 2px solid white !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    color: white !important;
+    border-radius: var(--border-radius) !important;
+}
+
+/* Primary buttons */
+.btn-primary, .btn-secondary {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
+    border: 2px solid white !important;
+    border-radius: var(--border-radius) !important;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(var(--primary-color-rgb), 0.4) !important;
+}
+
+/* Resume button */
+.btn-resume {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)) !important;
+    border: 2px solid var(--accent-color) !important;
+    border-radius: var(--border-radius) !important;
+}
+
+.btn-resume:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(var(--secondary-color-rgb), 0.4) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Links and highlights */
+.highlight {
+    color: var(--accent-color) !important;
+}
+
+/* Navigation */
+.nav-logo a {
+    color: white !important;
+}
+
+.nav-links a, .nav-link {
+    color: white !important;
+}
+
+.nav-links a:hover, .nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Skill icons */
+.skill-icon {
+    color: var(--secondary-color) !important;
+    font-size: 2rem !important;
+    opacity: 1 !important;
+}
+
+/* Project elements */
+.project-card h3 {
+    color: #ffffff !important;
+}
+
+.project-card .project-description {
+    color: #e5e7eb !important;
+}
+
+.project-tags .tag {
+    background: rgba(var(--accent-color-rgb), 0.3) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(var(--accent-color-rgb), 0.5) !important;
+    border-radius: calc(var(--border-radius) * 0.5) !important;
+}
+
+.project-card .project-links a {
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    border-radius: calc(var(--border-radius) * 0.75) !important;
+}
+
+.project-card .project-links a:hover {
+    background: var(--accent-color) !important;
+    color: white !important;
+}
+
+/* Social links */
+.social-links a, .about-links a {
+    color: var(--accent-color) !important;
+}
+
+.social-links a:hover, .about-links a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Certificate and update icons */
+.cert-icon, .update-icon {
+    color: var(--secondary-color) !important;
+}
+
+/* Contact section icons */
+.contact-method i {
+    color: var(--secondary-color) !important;
+}
+
+/* Text color fixes */
+.section-title, .subsection-title {
+    color: #ffffff !important;
+}
+
+.skill-card h3, .project-card h3, .cert-card h3, .update-card h3,
+.skill-card p, .project-card p, .cert-card p, .update-card p,
+.about-text p, .about-text h2, .about-text h3 {
+    color: #ffffff !important;
+}
+
+.hero-content h1, .hero-content h2, .hero-content p {
+    color: #ffffff !important;
+}
+
+/* Navbar theming */
+.navbar {
+    background: var(--card-color) !important;
+    border-radius: 0 !important;
+}
+
+/* Body background using gradient variables */
+
+/* Background: Custom Gradient */
+body {
+    background: linear-gradient(var(--gradient-direction), var(--bg-start-color) 0%, var(--bg-end-color) 100%) !important;
+}
+
+
+/* Component gradients */
+.project-image {
+    background: linear-gradient(var(--gradient-direction), var(--media-header-start), var(--media-header-end)) !important;
+}
+
+.update-date {
+    background: linear-gradient(var(--gradient-direction), var(--update-date-start), var(--update-date-end)) !important;
+}
+
+/* Themed event tags */
+.update-tag {
+    background: rgba(var(--accent-color-rgb), 0.15) !important;
+    color: var(--accent-color) !important;
+    border: 1px solid rgba(var(--accent-color-rgb), 0.35) !important;
+    border-radius: calc(var(--border-radius) * 0.6) !important;
+}

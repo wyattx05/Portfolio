@@ -1,0 +1,233 @@
+{
+  "projects": [
+    {
+      "id": "proj_1",
+      "title": "Custom Folders Image Generation",
+      "description": "A custom application that automatically generates organized folder structures with image previews, streamlining file management and organization workflows.",
+      "icon": "fas fa-desktop",
+      "tags": [
+        "Model Training",
+        "Image Generation",
+        "Datasets",
+        "Diffusion Bee"
+      ],
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/wyattx05/apple-folders-image-generation",
+          "text": "GitHub"
+        }
+      ],
+      "featured": true,
+      "dateCreated": "2024-12-01",
+      "order": 1
+    },
+    {
+      "id": "proj_2",
+      "title": "HOA Website",
+      "description": "Created a homeowners association website using modern web technologies, featuring tools and information for residents on a platform that is easy for the HOA to manage.",
+      "icon": "fab fa-docker",
+      "tags": [
+        "Squarespace",
+        "SEO Setup",
+        "Domain Management"
+      ],
+      "links": [
+        {
+          "type": "website",
+          "text": "Website",
+          "url": "https://kingstreamhomesassociation.org"
+        }
+      ],
+      "featured": true,
+      "dateCreated": "2024-10-01",
+      "order": 2
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert_1",
+      "title": "Dean's List",
+      "issuer": "VCU",
+      "date": "2024",
+      "pdfPath": "assets/documents/deans-list-certificate.pdf",
+      "icon": "fas fa-certificate",
+      "order": 1
+    },
+    {
+      "id": "cert_2",
+      "title": "DMARC Fundamentals",
+      "issuer": "DMARC Academy",
+      "date": "2024",
+      "pdfPath": "assets/documents/dmarc-fundamentals-certificate.pdf",
+      "icon": "fas fa-envelope",
+      "order": 2
+    },
+    {
+      "id": "cert_3",
+      "title": "Introduction to Design Thinking",
+      "issuer": "VCU",
+      "date": "2025",
+      "pdfPath": "assets/documents/Introduction to Design Thinking.pdf",
+      "icon": "fas fa-lightbulb",
+      "order": 3
+    }
+  ],
+  "updates": [
+    {
+      "id": "update_1",
+      "title": "Started Fall Semester at VCU",
+      "description": "Beginning advanced coursework in Information Systems, AI, and machine learning.",
+      "date": "2025-08-01",
+      "tag": "Education",
+      "order": 1,
+      "featured": false,
+      "links": []
+    },
+    {
+      "id": "update_2",
+      "title": "Became Webmaster for AKPSI and ISO",
+      "description": "Took on the position of Webmaster for my business fraternity Alpha Kappa Psi and ISO: Information Systems Organization.",
+      "date": "2025-06-01",
+      "tag": "Leadership",
+      "order": 2,
+      "links": []
+    },
+    {
+      "id": "update_3",
+      "title": "Won third place in the 2025 VCU AI in Business Competition",
+      "description": "Developed a business plan with my team proposing AI implementation for a manufacturing company.",
+      "date": "2025-04-01",
+      "tag": "Project",
+      "order": 3,
+      "links": []
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill_1",
+      "title": "IT Support",
+      "description": "Technical troubleshooting and system administration",
+      "icon": "fas fa-tools",
+      "order": 1
+    },
+    {
+      "id": "skill_2",
+      "title": "Python",
+      "description": "Learning programming and automation scripting",
+      "icon": "fab fa-python",
+      "order": 2
+    },
+    {
+      "id": "skill_3",
+      "title": "Docker",
+      "description": "Containerization and virtualization",
+      "icon": "fab fa-docker",
+      "order": 3
+    },
+    {
+      "id": "skill_4",
+      "title": "Git & GitHub",
+      "description": "Version control and collaboration",
+      "icon": "fab fa-git-alt",
+      "order": 4
+    },
+    {
+      "id": "skill_5",
+      "title": "AI & ML",
+      "description": "Machine learning and AI applications",
+      "icon": "fas fa-brain",
+      "order": 5
+    },
+    {
+      "id": "skill_6",
+      "title": "Data Analysis",
+      "description": "Data manipulation and insights",
+      "icon": "fas fa-database",
+      "order": 6
+    }
+  ],
+  "personalInfo": {
+    "name": "Wyatt Anderson",
+    "title": "Information Systems Student & Tech Enthusiast",
+    "aboutText": [
+      "I'm an Information Systems undergraduate at Virginia Commonwealth University with a minor in Practical AI, driven by a passion for technology, innovation, and hands-on learning.",
+      "I am from the Washington, D.C. area and live in Richmond for school. I love to work on side projects and learn more about the technologies that surround me."
+    ],
+    "profileImage": "assets/images/profile.jpeg",
+    "resumePath": "assets/documents/Resume.pdf",
+    "email": "whanderson024@gmail.com",
+    "socialLinks": [
+      {
+        "label": "Linkedin",
+        "url": "https://www.linkedin.com/in/wyatt-anderson609",
+        "icon": ""
+      },
+      {
+        "label": "Github",
+        "url": "https://github.com/wyattx05",
+        "icon": ""
+      },
+      {
+        "label": "Instagram",
+        "url": "https://instagram.com/wyattx05",
+        "icon": ""
+      },
+      {
+        "label": "Handshake",
+        "url": "https://app.joinhandshake.com/profiles/6pd9rm",
+        "icon": ""
+      }
+    ],
+    "themeSettings": {
+      "colors": {
+        "primary": "#1e3a8a",
+        "secondary": "#166534",
+        "accent": "#22c55e",
+        "card": "rgba(255, 255, 255, 0.1)"
+      },
+      "typography": {
+        "fontFamily": "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+        "headingSizeMultiplier": 1
+      },
+      "layout": {
+        "borderRadius": 15,
+        "shadowIntensity": 0.3,
+        "enableAnimations": true,
+        "enableBackgroundBlur": true
+      },
+      "background": {
+        "type": "gradient",
+        "color": "#0f172a",
+        "imageUrl": "",
+        "blur": 5,
+        "tint": "#000000",
+        "tintOpacity": 0.4
+      },
+      "sectionTitles": {
+        "underlineColor": "#60a5fa",
+        "underlineWidth": "80px",
+        "underlineHeight": "4px",
+        "underlineGlow": true
+      }
+    }
+  },
+  "themeSettings": {
+    "primaryColor": "#1e3a8a",
+    "secondaryColor": "#1e40af",
+    "accentColor": "#3b82f6",
+    "backgroundGradient": true,
+    "gradientDirection": "135deg",
+    "borderRadius": "12px",
+    "shadowIntensity": 0.15,
+    "cardOpacity": 0.1,
+    "backgroundStartColor": "#0f172a",
+    "backgroundEndColor": "#1e293b",
+    "useBackgroundForMediaHeader": true,
+    "mediaHeaderStartColor": "#0B1020",
+    "mediaHeaderEndColor": "#1E293B",
+    "useBackgroundForUpdateDate": true,
+    "updateDateStartColor": "#0B1020",
+    "updateDateEndColor": "#1E293B"
+  }
+}

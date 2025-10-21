@@ -63,3 +63,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Note: Typing animation now handled by content-manager.js
 });
+
+// Blog modal keyboard support
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const blogModal = document.getElementById('blog-modal');
+        if (blogModal && blogModal.classList.contains('active')) {
+            window.contentManager.closeBlogModal();
+        }
+    }
+});
+
+// Close modal when clicking outside content
+document.addEventListener('click', (e) => {
+    const blogModal = document.getElementById('blog-modal');
+    if (e.target === blogModal) {
+        window.contentManager.closeBlogModal();
+    }
+});

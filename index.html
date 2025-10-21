@@ -20,6 +20,7 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
+                <a href="#blog" class="nav-link">Blog</a>
                 <a href="#updates" class="nav-link">Updates</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -101,6 +102,19 @@
         </div>
     </section>
 
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 class="section-title">Blog</h2>
+            <div class="blog-content">
+                <p class="blog-intro">My thoughts and insights on recent events, technology, and industry trends.</p>
+                <div class="blog-posts-grid">
+                    <!-- Dynamic content loaded by content-manager.js -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Recent Updates Section -->
     <section id="updates" class="updates">
         <div class="container">
@@ -167,6 +181,28 @@
             </div>
         </div>
     </section>
+
+    <!-- Blog Post Modal -->
+    <div id="blog-modal" class="blog-modal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <button class="blog-modal-close" onclick="window.contentManager.closeBlogModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="blog-modal-body">
+                <div class="blog-modal-meta">
+                    <span class="blog-modal-date"></span>
+                    <span class="blog-modal-author"></span>
+                </div>
+                <h1 class="blog-modal-title"></h1>
+                <div class="blog-modal-images"></div>
+                <div class="blog-modal-content-text"></div>
+                <div class="blog-modal-tags"></div>
+                <div class="blog-modal-links"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">

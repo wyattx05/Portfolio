@@ -147,6 +147,44 @@
       "order": 6
     }
   ],
+  "blog": [
+    {
+      "id": "blog_1",
+      "title": "Welcome to My Blog",
+      "content": "This is my first blog post where I'll be sharing my thoughts on recent events, technology trends, and insights from my journey as an Information Systems student.",
+      "excerpt": "Welcome to my blog! Here I'll share thoughts on technology, recent events, and my journey in Information Systems.",
+      "author": "Wyatt Anderson",
+      "publishDate": "2025-09-15",
+      "lastModified": "2025-10-21",
+      "tags": [
+        "Introduction",
+        "Technology",
+        "Personal"
+      ],
+      "featured": false,
+      "links": [],
+      "images": [],
+      "status": "draft"
+    },
+    {
+      "title": "Updating to IOS 26",
+      "excerpt": "All of Apples new updates came out today and I am here to share my thoughts.",
+      "content": "Recently, the new updates came out to all Apple products. IOS 26, iPad OS 26, and Mac OS 26. With the new naming scheme on the year and the new liquid glass redesign I am very hyped about these updates. Although they all came out today and I have yet to update. I ran the beta. a lot over the summer but downgraded and haven't been back on since. It was buggy for me but I was in love with the new clear icons and iPad OS features. I only have an iPad mini and the fact that I am now able to use that as a full computer is so cool to me. I had wanted stage manager for so long and now I have that and more. On my phone, because it is my daily driver I need the battery to last all day. For this reason I am scared to upgrade because I have to have a device that stays reliable. I also am a very nostalgic person and the thought that once I upgrade I will be gone of the old flat design saddens me. With all this being said, I am very happy about the new updates and know it will come to my phone soon.",
+      "author": "Wyatt Anderson",
+      "status": "draft",
+      "publishDate": "2025-09-16",
+      "tags": [
+        "Apple",
+        "Technology"
+      ],
+      "featured": false,
+      "lastModified": "2025-10-21",
+      "links": [],
+      "images": [],
+      "id": "blog_1757990413797",
+      "order": 1
+    }
+  ],
   "personalInfo": {
     "name": "Wyatt Anderson",
     "title": "Information Systems Student & Tech Enthusiast",

@@ -14,8 +14,8 @@
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/wyattx05/apple-folders-image-generation",
-          "text": "GitHub"
+          "text": "GitHub",
+          "url": "https://github.com/wyattx05/apple-folders-image-generation"
         }
       ],
       "featured": true,
@@ -42,6 +42,26 @@
       "featured": true,
       "dateCreated": "2024-10-01",
       "order": 2
+    },
+    {
+      "title": "Project Memories",
+      "description": "With snapchats new paywall I decided to make a way to easily download all your snapchat memories and view them in a memories view like experience! This project is still under development!",
+      "icon": "fab fa-snapchat-ghost",
+      "order": 3,
+      "tags": [
+        "Python",
+        "HTML",
+        "Prompt Engineering"
+      ],
+      "featured": true,
+      "links": [
+        {
+          "type": "github",
+          "text": "Github",
+          "url": "https://github.com/wyattx05/Project-Memories"
+        }
+      ],
+      "id": "proj_1766379454058"
     }
   ],
   "certifications": [
@@ -75,23 +95,14 @@
   ],
   "updates": [
     {
-      "id": "update_1",
-      "title": "Started Fall Semester at VCU",
-      "description": "Beginning advanced coursework in Information Systems, AI, and machine learning.",
-      "date": "2025-08-01",
-      "tag": "Education",
-      "order": 1,
-      "featured": false,
-      "links": []
-    },
-    {
       "id": "update_2",
-      "title": "Became Webmaster for AKPSI and ISO",
-      "description": "Took on the position of Webmaster for my business fraternity Alpha Kappa Psi and ISO: Information Systems Organization.",
-      "date": "2025-06-01",
+      "title": "Became President of VCU's Information Systems Organization",
+      "description": "Taking over the position of President for the VCU Information Systems Organization starting in the Spring 2026 semester. I am very excited to share my ideas and leadership with an organization I care deeply about. I was previously webmaster in the Fall 2025 semester.",
+      "date": "2025-12-22",
       "tag": "Leadership",
-      "order": 2,
-      "links": []
+      "order": 0,
+      "links": [],
+      "icon": "fas fa-bolt"
     },
     {
       "id": "update_3",
@@ -99,8 +110,35 @@
       "description": "Developed a business plan with my team proposing AI implementation for a manufacturing company.",
       "date": "2025-04-01",
       "tag": "Project",
-      "order": 3,
-      "links": []
+      "order": 0,
+      "links": [
+        {
+          "type": "website",
+          "text": "Article",
+          "url": "https://blogs.vcu.edu/business/2025/05/13/strategize-present-win-vcu-business-students-participate-in-sixth-annual-business-analytics-ai-challenge/"
+        }
+      ],
+      "icon": "fas fa-trophy"
+    },
+    {
+      "title": "Student Panelist on AI in Education",
+      "description": "I served as a student panelist at the Every Learner Everywhere convening in Richmond, VA, discussing the student experience with digital learning in the age of AI. As an Information Systems major with a minor in Practical Artificial Intelligence at VCU, I shared how AI has changed my studying, research, and daily workflow, and why clear ethical boundaries matter in the classroom. ",
+      "date": "2025-12-04",
+      "tag": "Artificial Intelligence",
+      "icon": "fas fa-bullhorn",
+      "order": 0,
+      "links": [],
+      "id": "update_1766380724315"
+    },
+    {
+      "title": "Innovation Catalyst Micro Internship Completed",
+      "description": "I finished my recent Innovation Catalyst micro internship where I conducted structured interviews with students to understand how they use digital payment methods and where those systems fall short. The insights I gathered will support the Virginia Department of Accounts as they explore improvements to statewide e payment experiences. This experience strengthened my user research skills and my ability to turn raw feedback into actionable insights.",
+      "date": "2025-11-30",
+      "tag": "Micro Internship",
+      "icon": "fas fa-briefcase",
+      "order": 1,
+      "links": [],
+      "id": "update_1766381983766"
     }
   ],
   "skills": [
@@ -126,13 +164,6 @@
       "order": 3
     },
     {
-      "id": "skill_4",
-      "title": "Git & GitHub",
-      "description": "Version control and collaboration",
-      "icon": "fab fa-git-alt",
-      "order": 4
-    },
-    {
       "id": "skill_5",
       "title": "AI & ML",
       "description": "Machine learning and AI applications",
@@ -145,6 +176,13 @@
       "description": "Data manipulation and insights",
       "icon": "fas fa-database",
       "order": 6
+    },
+    {
+      "title": "Prompt Engineering",
+      "description": "Creating desired AI outputs",
+      "icon": "fas fa-pencil",
+      "order": 7,
+      "id": "skill_1766382098298"
     }
   ],
   "blog": [
@@ -155,34 +193,50 @@
       "excerpt": "Welcome to my blog! Here I'll share thoughts on technology, recent events, and my journey in Information Systems.",
       "author": "Wyatt Anderson",
       "publishDate": "2025-09-15",
-      "lastModified": "2025-10-21",
+      "lastModified": "2025-12-22",
       "tags": [
         "Introduction",
         "Technology",
         "Personal"
       ],
-      "featured": false,
+      "featured": true,
       "links": [],
       "images": [],
-      "status": "draft"
+      "status": "published"
     },
     {
-      "title": "Updating to IOS 26",
-      "excerpt": "All of Apples new updates came out today and I am here to share my thoughts.",
-      "content": "Recently, the new updates came out to all Apple products. IOS 26, iPad OS 26, and Mac OS 26. With the new naming scheme on the year and the new liquid glass redesign I am very hyped about these updates. Although they all came out today and I have yet to update. I ran the beta. a lot over the summer but downgraded and haven't been back on since. It was buggy for me but I was in love with the new clear icons and iPad OS features. I only have an iPad mini and the fact that I am now able to use that as a full computer is so cool to me. I had wanted stage manager for so long and now I have that and more. On my phone, because it is my daily driver I need the battery to last all day. For this reason I am scared to upgrade because I have to have a device that stays reliable. I also am a very nostalgic person and the thought that once I upgrade I will be gone of the old flat design saddens me. With all this being said, I am very happy about the new updates and know it will come to my phone soon.",
+      "title": "Metro UI",
+      "excerpt": "Windows phone emulator I forked and added onto",
+      "content": "I love emulators, especially when it comes to re-living old operating systems. Recently, I started looking for a Windows Phone emulator and came across one by 4rnv that emulates a Windows Phone experience directly in a web browser. It has some really cool features, so I decided to fork the project and add a bunch of my own features just to experiment and learn.\n\nCheck it out at the link below, and be sure to check out the original repository as well.",
       "author": "Wyatt Anderson",
-      "status": "draft",
-      "publishDate": "2025-09-16",
+      "status": "published",
+      "publishDate": "2025-12-22",
       "tags": [
-        "Apple",
-        "Technology"
+        "Emulator",
+        "Windows Phone"
       ],
-      "featured": false,
-      "lastModified": "2025-10-21",
-      "links": [],
+      "featured": true,
+      "lastModified": "2025-12-22",
+      "links": [
+        {
+          "type": "website",
+          "text": "My live emulator",
+          "url": "https://wyattx05.github.io/metro/"
+        },
+        {
+          "type": "github",
+          "text": "My Github Page",
+          "url": "https://github.com/wyattx05/metro"
+        },
+        {
+          "type": "github",
+          "text": "OG Github Page",
+          "url": "https://github.com/4rnv/metro"
+        }
+      ],
       "images": [],
-      "id": "blog_1757990413797",
-      "order": 1
+      "id": "blog_1766379824572",
+      "order": 2
     }
   ],
   "personalInfo": {
@@ -193,7 +247,7 @@
       "I am from the Washington, D.C. area and live in Richmond for school. I love to work on side projects and learn more about the technologies that surround me."
     ],
     "profileImage": "assets/images/profile.jpeg",
-    "resumePath": "assets/documents/Resume.pdf",
+    "resumePath": "assets/documents/WyattAnderson_Resume.pdf",
     "email": "whanderson024@gmail.com",
     "socialLinks": [
       {

@@ -17,8 +17,10 @@ class ContentManager {
 
     async loadContent() {
         try {
-            // Try API first (local development)
-            const response = await fetch('/api/content');
+            // Try API first (local development) with cache busting
+            const response = await fetch(`/api/content?t=${Date.now()}`, {
+                cache: 'no-store'
+            });
             if (response.ok) {
                 this.content = await response.json();
                 return;
@@ -28,8 +30,10 @@ class ContentManager {
         }
         
         try {
-            // Fallback to static JSON (production)
-            const response = await fetch(`data/content.json?t=${Date.now()}`);
+            // Fallback to static JSON (production) with cache busting
+            const response = await fetch(`data/content.json?t=${Date.now()}`, {
+                cache: 'no-store'
+            });
             if (response.ok) {
                 this.content = await response.json();
                 return;
@@ -383,7 +387,7 @@ class ContentManager {
             if (heroSubtitle) heroSubtitle.textContent = "Information Systems Student & Tech Enthusiast";
             if (profileImage) profileImage.src = "assets/images/profile.jpeg";
             if (resumeLink) {
-                resumeLink.href = "assets/documents/Resume.pdf";
+                resumeLink.href = "assets/documents/WyattAnderson_Resume.pdf";
                 resumeLink.setAttribute('download', 'Wyatt_Anderson_Resume.pdf');
             }
             

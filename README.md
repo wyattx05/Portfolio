@@ -5,7 +5,6 @@ A modern, responsive portfolio website with an integrated Content Management Sys
 ## 🌐 Portfolio
 [View Portfolio](https://wyattx05.github.io/Portfolio)
 
-
 ## 📒 Site Layout
 
 Brief description of the site layout:
@@ -25,9 +24,6 @@ Brief description of the site layout:
 - **GitHub Pages**: Free hosting and continuous deployment
 
 ## 📋 Coming Soon
-- **Blog Section**
-- **Faster updated links & information**
-- **Smoother Experince**
 - **Seperate pages**
 - **Showcase of Content Management Section**
     - Currently running locally, plan to upload soon for demonstration 

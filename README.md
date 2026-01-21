@@ -1,6 +1,6 @@
 # Wyatt Anderson - Portfolio Website
 
-A modern, responsive portfolio website with an integrated Content Management System showcasing my current work.
+A modern, responsive portfolio website showcasing my current work.
 
 ## 🌐 Portfolio
 [View Portfolio](https://wyattx05.github.io/Portfolio)

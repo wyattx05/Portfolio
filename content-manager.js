@@ -16,9 +16,20 @@ class ContentManager {
     }
 
     async loadContent() {
+        // Detect base path from current location
+        const getBasePath = () => {
+            const path = window.location.pathname;
+            if (path.includes('/Portfolio/')) {
+                return '/Portfolio';
+            }
+            return '';
+        };
+        
+        const basePath = getBasePath();
+        
         try {
             // Try API first (local development) with cache busting
-            const response = await fetch(`/api/content?t=${Date.now()}`, {
+            const response = await fetch(`${basePath}/api/content?t=${Date.now()}`, {
                 cache: 'no-store'
             });
             if (response.ok) {
@@ -31,7 +42,7 @@ class ContentManager {
         
         try {
             // Fallback to static JSON (production) with cache busting
-            const response = await fetch(`data/content.json?t=${Date.now()}`, {
+            const response = await fetch(`${basePath}/data/content.json?t=${Date.now()}`, {
                 cache: 'no-store'
             });
             if (response.ok) {

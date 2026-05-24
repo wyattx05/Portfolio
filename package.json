@@ -1,0 +1,34 @@
+{
+  "name": "portfolio-cms",
+  "version": "1.0.0",
+  "description": "Portfolio website with lightweight CMS",
+  "main": "cms/server.js",
+  "scripts": {
+    "start": "node cms/server.js",
+    "dev": "node cms/server.js",
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": ["portfolio", "cms"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-basic-auth": "^1.2.1",
+    "dotenv": "^16.0.3",
+    "ajv": "^8.12.0",
+    "sanitize-html": "^2.9.0",
+    "helmet": "^7.0.0",
+    "csurf": "^1.11.0",
+    "pino": "^8.11.0",
+    "morgan": "^1.10.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "eslint": "^8.40.0",
+    "prettier": "^2.8.8",
+    "@playwright/test": "^1.34.0"
+  }
+}

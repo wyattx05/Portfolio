@@ -144,7 +144,11 @@ class ContentManager {
             return;
         }
 
-        blogGrid.innerHTML = publishedPosts.map(post => {
+        // Limit to 2 most recent posts for homepage
+        const homepagePosts = publishedPosts.slice(0, 2);
+        const hasMore = publishedPosts.length > 2;
+
+        blogGrid.innerHTML = homepagePosts.map(post => {
             const publishDate = new Date(post.publishDate);
             const formattedDate = publishDate.toLocaleDateString('en-US', { 
                 year: 'numeric', 
@@ -215,7 +219,11 @@ class ContentManager {
         const sortedUpdates = this.content.updates
             .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        updatesGrid.innerHTML = sortedUpdates.map(update => {
+        // Limit to 3 most recent updates for homepage
+        const homepageUpdates = sortedUpdates.slice(0, 3);
+        const hasMore = sortedUpdates.length > 3;
+
+        updatesGrid.innerHTML = homepageUpdates.map(update => {
             const date = new Date(update.date);
             const month = date.toLocaleDateString('en-US', { month: 'long' });
             const year = date.getFullYear();
@@ -243,6 +251,15 @@ class ContentManager {
                 </div>
             `;
         }).join('');
+
+        // Add "Show All" button if there are more updates
+        if (hasMore && updatesGrid.parentElement) {
+            const showAllBtn = document.createElement('button');
+            showAllBtn.className = 'show-all-updates-btn';
+            showAllBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Show All Updates';
+            showAllBtn.onclick = () => this.showAllUpdates();
+            updatesGrid.parentElement.appendChild(showAllBtn);
+        }
     }
 
     renderSkills() {
@@ -641,6 +658,13 @@ class ContentManager {
         const modal = document.getElementById('blog-modal');
         modal.classList.remove('active');
         document.body.classList.remove('modal-open');
+    }
+
+    showAllUpdates() {
+        const allUpdates = this.content.updates
+            .sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        alert(`Total updates: ${allUpdates.length}\n\nFull updates view - coming soon!`);
     }
 }
 

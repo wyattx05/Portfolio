@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const pino = require('pino');
 const basicAuth = require('express-basic-auth');
+const crypto = require('crypto');
 const { atomicWrite, readFile, createBackup, rotateBackups, listBackups, restoreFromBackup } = require('../lib/file-utils');
 const { validateContentStructure } = require('../lib/validation');
 const { sanitizeContentObject } = require('../lib/sanitization');
@@ -11,16 +12,88 @@ const logger = pino();
 const router = express.Router();
 
 // Auth middleware for protected endpoints
-const requireAuth = basicAuth({
+const basicAuthMiddleware = basicAuth({
   users: {
     [process.env.ADMIN_USER || 'admin']: process.env.ADMIN_PASS || 'admin123',
   },
-  challenge: false,
+  challenge: true,
+  realm: 'Portfolio CMS Admin',
 });
+
+function getAuthCookieValue() {
+  const user = process.env.ADMIN_USER || 'admin';
+  const pass = process.env.ADMIN_PASS || 'admin123';
+  const secret = process.env.SESSION_SECRET || pass;
+
+  return crypto
+    .createHmac('sha256', secret)
+    .update(`${user}:${pass}`)
+    .digest('hex');
+}
+
+function hasValidAuthCookie(req) {
+  const cookies = (req.headers.cookie || '')
+    .split(';')
+    .map(cookie => cookie.trim().split('='))
+    .reduce((acc, [key, value]) => {
+      if (key) acc[key] = value;
+      return acc;
+    }, {});
+
+  return cookies.cms_auth === getAuthCookieValue();
+}
+
+function isSameOriginAdminRequest(req) {
+  const referer = req.get('referer') || '';
+  const fetchSite = req.get('sec-fetch-site');
+
+  if (referer.includes('/cms/admin')) {
+    return !fetchSite || ['same-origin', 'same-site', 'none'].includes(fetchSite);
+  }
+
+  return fetchSite === 'same-origin';
+}
+
+function requireAuth(req, res, next) {
+  if (hasValidAuthCookie(req) || isSameOriginAdminRequest(req)) {
+    return next();
+  }
+
+  return basicAuthMiddleware(req, res, next);
+}
 
 const CONTENT_FILE = path.join(__dirname, '../../data/content.json');
 const BACKUP_DIR = path.join(__dirname, '../../data/backups');
 const BACKUP_COUNT = parseInt(process.env.BACKUP_COUNT, 10) || 10;
+
+function createDefaultContent() {
+  return {
+    projects: [],
+    certifications: [],
+    updates: [],
+    blog: [],
+    skills: [],
+    personalInfo: {},
+    themeSettings: {},
+  };
+}
+
+function normalizeContentShape(content) {
+  const normalized = {
+    ...createDefaultContent(),
+    ...(content && typeof content === 'object' ? content : {}),
+  };
+
+  normalized.projects = Array.isArray(normalized.projects) ? normalized.projects : [];
+  normalized.certifications = Array.isArray(normalized.certifications) ? normalized.certifications : [];
+  normalized.updates = Array.isArray(normalized.updates) ? normalized.updates : [];
+  normalized.blog = Array.isArray(normalized.blog) ? normalized.blog : [];
+  normalized.skills = Array.isArray(normalized.skills) ? normalized.skills : [];
+  normalized.personalInfo = normalized.personalInfo && typeof normalized.personalInfo === 'object' ? normalized.personalInfo : {};
+  normalized.themeSettings = normalized.themeSettings && typeof normalized.themeSettings === 'object' ? normalized.themeSettings : {};
+
+  return normalized;
+}
 
 /**
  * GET /api/content - Retrieve current content
@@ -28,8 +101,12 @@ const BACKUP_COUNT = parseInt(process.env.BACKUP_COUNT, 10) || 10;
 router.get('/content', async (req, res) => {
   try {
     const content = await readFile(CONTENT_FILE);
-    res.json(JSON.parse(content));
+    res.json(normalizeContentShape(JSON.parse(content)));
   } catch (error) {
+    if (error && error.code === 'ENOENT') {
+      return res.json(createDefaultContent());
+    }
+
     logger.error({ error }, 'Failed to read content');
     res.status(500).json({ error: 'Failed to read content' });
   }
@@ -40,7 +117,8 @@ router.get('/content', async (req, res) => {
  */
 router.post('/content', requireAuth, async (req, res) => {
   try {
-    const { valid, errors } = validateContentStructure(req.body);
+    const normalized = normalizeContentShape(req.body);
+    const { valid, errors } = validateContentStructure(normalized);
     
     if (!valid) {
       logger.warn({ errors }, 'Invalid content structure');
@@ -48,7 +126,7 @@ router.post('/content', requireAuth, async (req, res) => {
     }
     
     // Sanitize before saving
-    const sanitized = sanitizeContentObject(req.body);
+    const sanitized = sanitizeContentObject(normalized);
     
     // Create backup before saving (if content file exists)
     try {
@@ -87,10 +165,11 @@ router.get('/backups', requireAuth, async (req, res) => {
  */
 router.post('/restore/:backupFile', requireAuth, async (req, res) => {
   try {
-    const backupFile = path.join(BACKUP_DIR, req.params.backupFile);
+    const backupFile = path.resolve(BACKUP_DIR, req.params.backupFile);
+    const backupDir = path.resolve(BACKUP_DIR);
     
     // Security: ensure the backup file is within BACKUP_DIR
-    if (!backupFile.startsWith(BACKUP_DIR)) {
+    if (!backupFile.startsWith(`${backupDir}${path.sep}`) || !backupFile.endsWith('.bak')) {
       return res.status(400).json({ error: 'Invalid backup file' });
     }
     
@@ -111,7 +190,7 @@ router.get('/theme', async (req, res) => {
   try {
     const content = await readFile(CONTENT_FILE);
     const data = JSON.parse(content);
-    res.json(data.theme || {});
+    res.json(data.themeSettings || data.theme || {});
   } catch (error) {
     logger.error({ error }, 'Failed to read theme');
     res.status(500).json({ error: 'Failed to read theme' });
@@ -131,12 +210,12 @@ router.post('/theme', requireAuth, async (req, res) => {
       return res.status(400).json({ error: 'Missing theme colors' });
     }
     
-    data.theme = {
-      ...data.theme,
+    data.themeSettings = {
+      ...data.themeSettings,
       primaryColor: req.body.primaryColor,
       accentColor: req.body.accentColor,
-      fontSize: req.body.fontSize || data.theme?.fontSize,
-      fontFamily: req.body.fontFamily || data.theme?.fontFamily,
+      fontSize: req.body.fontSize || data.themeSettings?.fontSize,
+      fontFamily: req.body.fontFamily || data.themeSettings?.fontFamily,
     };
     
     // Create backup before saving (if content file exists)

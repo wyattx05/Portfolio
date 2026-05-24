@@ -37,6 +37,10 @@ function sanitizeContent(dirtyHtml) {
   }
 }
 
+function sanitizePlainText(value) {
+  return sanitizeContent(value).replace(/&amp;/g, '&');
+}
+
 /**
  * Sanitize all HTML fields in content object
  * @param {Object} content - Content object with potentially unsafe HTML
@@ -46,32 +50,83 @@ function sanitizeContentObject(content) {
   if (!content || typeof content !== 'object') {
     return content;
   }
+
+  const sanitizeStringField = (object, field, allowHtml = false) => {
+    if (typeof object[field] === 'string') {
+      object[field] = allowHtml ? sanitizeContent(object[field]) : sanitizePlainText(object[field]);
+    }
+  };
   
   const sanitized = { ...content };
   
   // Sanitize blog posts
   if (Array.isArray(sanitized.blog)) {
-    sanitized.blog = sanitized.blog.map(post => ({
-      ...post,
-      content: sanitizeContent(post.content),
-      excerpt: post.excerpt ? sanitizeContent(post.excerpt) : post.excerpt,
-    }));
+    sanitized.blog = sanitized.blog.map(post => {
+      const cleanPost = { ...post };
+      sanitizeStringField(cleanPost, 'title');
+      sanitizeStringField(cleanPost, 'content', true);
+      sanitizeStringField(cleanPost, 'excerpt');
+      sanitizeStringField(cleanPost, 'author');
+      return cleanPost;
+    });
   }
   
   // Sanitize updates
   if (Array.isArray(sanitized.updates)) {
-    sanitized.updates = sanitized.updates.map(update => ({
-      ...update,
-      content: sanitizeContent(update.content),
-    }));
+    sanitized.updates = sanitized.updates.map(update => {
+      const cleanUpdate = { ...update };
+      sanitizeStringField(cleanUpdate, 'title');
+      sanitizeStringField(cleanUpdate, 'description');
+      sanitizeStringField(cleanUpdate, 'content');
+      sanitizeStringField(cleanUpdate, 'tag');
+      return cleanUpdate;
+    });
   }
   
   // Sanitize project descriptions (optional - usually safe)
   if (Array.isArray(sanitized.projects)) {
-    sanitized.projects = sanitized.projects.map(project => ({
-      ...project,
-      description: sanitizeContent(project.description),
-    }));
+    sanitized.projects = sanitized.projects.map(project => {
+      const cleanProject = { ...project };
+      sanitizeStringField(cleanProject, 'title');
+      sanitizeStringField(cleanProject, 'description');
+      return cleanProject;
+    });
+  }
+
+  if (Array.isArray(sanitized.certifications)) {
+    sanitized.certifications = sanitized.certifications.map(certification => {
+      const cleanCertification = { ...certification };
+      sanitizeStringField(cleanCertification, 'title');
+      sanitizeStringField(cleanCertification, 'issuer');
+      sanitizeStringField(cleanCertification, 'date');
+      return cleanCertification;
+    });
+  }
+
+  if (Array.isArray(sanitized.skills)) {
+    sanitized.skills = sanitized.skills.map(skill => {
+      const cleanSkill = { ...skill };
+      sanitizeStringField(cleanSkill, 'title');
+      sanitizeStringField(cleanSkill, 'description');
+      return cleanSkill;
+    });
+  }
+
+  if (sanitized.personalInfo && typeof sanitized.personalInfo === 'object') {
+    const cleanPersonalInfo = { ...sanitized.personalInfo };
+    sanitizeStringField(cleanPersonalInfo, 'name');
+    sanitizeStringField(cleanPersonalInfo, 'title');
+    sanitizeStringField(cleanPersonalInfo, 'email');
+    sanitizeStringField(cleanPersonalInfo, 'profileImage');
+    sanitizeStringField(cleanPersonalInfo, 'resumePath');
+
+    if (Array.isArray(cleanPersonalInfo.aboutText)) {
+      cleanPersonalInfo.aboutText = cleanPersonalInfo.aboutText.map(item => (
+        typeof item === 'string' ? sanitizePlainText(item) : item
+      ));
+    }
+
+    sanitized.personalInfo = cleanPersonalInfo;
   }
   
   logger.debug('Content object sanitized');

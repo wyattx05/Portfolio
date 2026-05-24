@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1779661216178" clover="3.2.0">
-  <project timestamp="1779661216178" name="All files">
+<coverage generated="1779661877932" clover="3.2.0">
+  <project timestamp="1779661877932" name="All files">
     <metrics statements="89" coveredstatements="64" conditionals="23" coveredconditionals="14" methods="15" coveredmethods="11" elements="127" coveredelements="89" complexity="0" loc="89" ncloc="89" packages="1" files="3" classes="3"/>
     <file name="file-utils.js" path="/Users/wyattanderson/Documents/Projects/Showcase/Portfolio.worktrees/agents-cms-streamlining-and-optimization/cms/lib/file-utils.js">
       <metrics statements="51" coveredstatements="29" conditionals="5" coveredconditionals="1" methods="8" coveredmethods="5"/>

@@ -92,12 +92,21 @@ async function rotateBackups(backupDir, keepCount = 10) {
 async function listBackups(backupDir) {
   try {
     const files = await fs.readdir(backupDir);
-    const backups = files
+    const backupFiles = files
       .filter(f => f.endsWith('.bak'))
       .sort()
       .reverse();
     
-    return backups;
+    return Promise.all(backupFiles.map(async (filename) => {
+      const fullPath = path.join(backupDir, filename);
+      const stats = await fs.stat(fullPath);
+
+      return {
+        filename,
+        timestamp: stats.mtime.toISOString(),
+        size: stats.size,
+      };
+    }));
   } catch (error) {
     if (error.code === 'ENOENT') {
       return [];

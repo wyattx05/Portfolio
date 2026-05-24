@@ -6,6 +6,7 @@ const basicAuth = require('express-basic-auth');
 const morgan = require('morgan');
 const pino = require('pino');
 const path = require('path');
+const crypto = require('crypto');
 
 const contentApi = require('./api/content');
 
@@ -46,8 +47,26 @@ const basicAuthMiddleware = basicAuth({
   realm: 'Portfolio CMS Admin',
 });
 
+function getAuthCookieValue() {
+  const user = process.env.ADMIN_USER || 'admin';
+  const pass = process.env.ADMIN_PASS || 'admin123';
+  const secret = process.env.SESSION_SECRET || pass;
+
+  return crypto
+    .createHmac('sha256', secret)
+    .update(`${user}:${pass}`)
+    .digest('hex');
+}
+
 // Static admin panel (protected)
-app.use('/cms/admin', basicAuthMiddleware, express.static(path.join(__dirname, 'admin')));
+app.use('/cms/admin', basicAuthMiddleware, (req, res, next) => {
+  res.cookie('cms_auth', getAuthCookieValue(), {
+    httpOnly: true,
+    sameSite: 'strict',
+    secure: process.env.NODE_ENV === 'production',
+  });
+  next();
+}, express.static(path.join(__dirname, 'admin')));
 
 // Health check
 app.get('/health', (req, res) => {

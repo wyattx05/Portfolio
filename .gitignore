@@ -33,6 +33,9 @@ coverage/
 data/backups/
 !data/backups/.gitkeep
 
+# Local CMS editor UI
+cms/admin/
+
 # Build output
 dist/
 build/

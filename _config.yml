@@ -14,7 +14,12 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - cms/
+  - coverage/
+  - data/backups/
   - node_modules
+  - package.json
+  - package-lock.json
   - vendor/
 
 # Include files that would normally be excluded

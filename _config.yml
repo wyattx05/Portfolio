@@ -1,8 +1,8 @@
 # Jekyll Configuration for GitHub Pages
 title: "Wyatt Anderson - Portfolio"
 description: "Information Systems student and tech enthusiast portfolio"
-baseurl: ""
-url: "https://wyattx05.github.io"
+baseurl: "/Portfolio"
+url: "https://wyattx05.github.io/Portfolio"
 
 # Build settings
 markdown: kramdown

@@ -1,6 +1,12 @@
 # Dependencies
 node_modules/
+package.json
 package-lock.json
+
+# Local development tooling
+cms/
+__tests__/
+README.md
 
 # Environment variables
 .env
@@ -32,9 +38,6 @@ coverage/
 # Backups directory - keep .gitkeep
 data/backups/
 !data/backups/.gitkeep
-
-# Local CMS editor UI
-cms/admin/
 
 # Build output
 dist/

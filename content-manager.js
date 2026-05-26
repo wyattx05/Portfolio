@@ -66,7 +66,7 @@ class ContentManager {
             personalInfo: {
                 name: "Wyatt Anderson",
                 title: "Information Systems Student & Tech Enthusiast",
-                profileImage: "assets/images/profile.jpeg",
+                profileImage: "assets/images/profile.png",
                 resumePath: "assets/documents/Resume.pdf",
                 email: "whanderson024@gmail.com",
                 aboutText: [
@@ -150,11 +150,20 @@ class ContentManager {
         if (!updatesGrid || !this.content.updates) return;
 
         const sortedUpdates = this.content.updates
-            .sort((a, b) => new Date(b.date) - new Date(a.date));
+            .slice()
+            .sort((a, b) => {
+                const orderA = Number(a.order) || Number.MAX_SAFE_INTEGER;
+                const orderB = Number(b.order) || Number.MAX_SAFE_INTEGER;
 
-        // Limit to 3 most recent updates for homepage
+                if (orderA !== orderB) {
+                    return orderA - orderB;
+                }
+
+                return new Date(b.date) - new Date(a.date);
+            });
+
+        // Limit to 3 top updates for homepage
         const homepageUpdates = sortedUpdates.slice(0, 3);
-        const hasMore = sortedUpdates.length > 3;
 
         updatesGrid.innerHTML = homepageUpdates.map(update => {
             const date = new Date(update.date);
@@ -184,15 +193,6 @@ class ContentManager {
                 </div>
             `;
         }).join('');
-
-        // Add "Show All" button if there are more updates
-        if (hasMore && updatesGrid.parentElement) {
-            const showAllBtn = document.createElement('button');
-            showAllBtn.className = 'show-all-updates-btn';
-            showAllBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Show All Updates';
-            showAllBtn.onclick = () => this.showAllUpdates();
-            updatesGrid.parentElement.appendChild(showAllBtn);
-        }
     }
 
     renderSkills() {
@@ -246,7 +246,7 @@ class ContentManager {
         if (!this.content?.personalInfo) {
             if (heroTitle) this.typeWriter(heroTitle, "Hi, I'm Wyatt Anderson", 60);
             if (heroSubtitle) heroSubtitle.textContent = "Information Systems Student & Tech Enthusiast";
-            if (profileImage) profileImage.src = "assets/images/profile.jpeg";
+            if (profileImage) profileImage.src = "assets/images/profile.png";
             if (resumeLink) {
                 resumeLink.href = "assets/documents/WyattAnderson_Resume.pdf";
                 resumeLink.setAttribute('download', 'Wyatt_Anderson_Resume.pdf');
@@ -419,12 +419,6 @@ class ContentManager {
         type();
     }
 
-    showAllUpdates() {
-        const allUpdates = this.content.updates
-            .sort((a, b) => new Date(b.date) - new Date(a.date));
-        
-        alert(`Total updates: ${allUpdates.length}\n\nFull updates view - coming soon!`);
-    }
 }
 
 // Initialize content manager when DOM is loaded

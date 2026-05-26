@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wyatt Anderson - Portfolio</title>
-    <link rel="preload" as="image" href="assets/images/profile.jpeg">
+    <link rel="preload" as="image" href="assets/images/profile.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -23,11 +23,11 @@
                 <a href="#updates" class="nav-link">Updates</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <div class="nav-toggle" id="nav-toggle">
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="assets/images/profile.jpeg" alt="Profile Photo" class="profile-photo" width="300" height="300" decoding="async" fetchpriority="high">
+                <img src="assets/images/profile.png" alt="Profile Photo" class="profile-photo" width="300" height="300" decoding="async" fetchpriority="high">
             </div>
         </div>
     </section>
@@ -107,6 +107,12 @@
             <h2 class="section-title">Recent Updates</h2>
             <div class="updates-grid">
                 <!-- Dynamic content loaded by content-manager.js -->
+            </div>
+            <div class="updates-actions">
+                <a href="timeline.html" class="timeline-button">
+                    <i class="fas fa-timeline"></i>
+                    View Full Timeline
+                </a>
             </div>
         </div>
     </section>

@@ -5,13 +5,23 @@
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
+const closeMobileNav = () => {
+    navMenu.classList.remove('active');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+};
+
+const toggleMobileNav = () => {
+    const isOpen = navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+};
+
+navToggle.addEventListener('click', toggleMobileNav);
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    navMenu.classList.remove('active');
+    closeMobileNav();
 }));
 
 // Smooth scrolling for navigation links
@@ -20,9 +30,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const navbar = document.querySelector('.navbar');
+            const navOffset = (navbar?.offsetHeight || 72) + 22;
+            const targetTop = target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+            window.scrollTo({
+                top: Math.max(targetTop, 0),
+                behavior: 'smooth'
             });
         }
     });

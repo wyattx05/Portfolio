@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wyatt Anderson - Portfolio</title>
+    <link rel="preload" as="image" href="assets/images/profile.jpeg">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="theme.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -21,7 +21,6 @@
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#updates" class="nav-link">Updates</a>
-                <a href="#blog" class="nav-link">Blog</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="nav-toggle" id="nav-toggle">
@@ -49,7 +48,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="#" alt="Profile Photo" class="profile-photo">
+                <img src="assets/images/profile.jpeg" alt="Profile Photo" class="profile-photo" width="300" height="300" decoding="async" fetchpriority="high">
             </div>
         </div>
     </section>
@@ -112,19 +111,6 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <h2 class="section-title">Blog</h2>
-            <div class="blog-content">
-                <p class="blog-intro">My thoughts and insights on recent events, technology, and industry trends.</p>
-                <div class="blog-posts-grid">
-                    <!-- Dynamic content loaded by content-manager.js -->
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -181,28 +167,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Blog Post Modal -->
-    <div id="blog-modal" class="blog-modal">
-        <div class="blog-modal-content">
-            <div class="blog-modal-header">
-                <button class="blog-modal-close" onclick="window.contentManager.closeBlogModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="blog-modal-body">
-                <div class="blog-modal-meta">
-                    <span class="blog-modal-date"></span>
-                    <span class="blog-modal-author"></span>
-                </div>
-                <h1 class="blog-modal-title"></h1>
-                <div class="blog-modal-images"></div>
-                <div class="blog-modal-content-text"></div>
-                <div class="blog-modal-tags"></div>
-                <div class="blog-modal-links"></div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">

@@ -26,18 +26,22 @@ class ContentManager {
         };
         
         const basePath = getBasePath();
+        const isCmsServer = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+            && window.location.port === '3001';
         
-        try {
-            // Try API first (local development) with cache busting
-            const response = await fetch(`${basePath}/api/content?t=${Date.now()}`, {
-                cache: 'no-store'
-            });
-            if (response.ok) {
-                this.content = await response.json();
-                return;
+        if (isCmsServer) {
+            try {
+                // Try API first only when using the local CMS server.
+                const response = await fetch(`${basePath}/api/content?t=${Date.now()}`, {
+                    cache: 'no-store'
+                });
+                if (response.ok) {
+                    this.content = await response.json();
+                    return;
+                }
+            } catch (error) {
+                console.log('API not available, loading from static file');
             }
-        } catch (error) {
-            console.log('API not available, loading from static file');
         }
         
         try {
@@ -85,7 +89,6 @@ class ContentManager {
         this.renderPersonalInfo();
         this.renderProjects();
         this.renderCertifications();
-        this.renderBlog();
         this.renderUpdates();
         this.renderSkills();
     }
@@ -140,87 +143,6 @@ class ContentManager {
                 </div>
             </a>
         `).join('');
-    }
-
-    renderBlog() {
-        const blogGrid = document.querySelector('.blog-posts-grid');
-        if (!blogGrid || !this.content.blog) return;
-
-        const publishedPosts = this.content.blog
-            .filter(post => post.status === 'published')
-            .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
-
-        if (publishedPosts.length === 0) {
-            blogGrid.innerHTML = '<p class="no-posts">No blog posts yet. Check back soon!</p>';
-            return;
-        }
-
-        // Limit to 2 most recent posts for homepage
-        const homepagePosts = publishedPosts.slice(0, 2);
-        const hasMore = publishedPosts.length > 2;
-
-        blogGrid.innerHTML = homepagePosts.map(post => {
-            const publishDate = new Date(post.publishDate);
-            const formattedDate = publishDate.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-
-            return `
-                <article class="blog-post-card">
-                    ${post.images && post.images.length > 0 ? `
-                        <div class="blog-post-image">
-                            <img src="${post.images[0].url}" alt="${post.images[0].alt || post.title}" loading="lazy">
-                        </div>
-                    ` : ''}
-                    <div class="blog-post-content">
-                        <div class="blog-post-meta">
-                            <span class="blog-post-date">${formattedDate}</span>
-                            <span class="blog-post-author">by ${post.author}</span>
-                        </div>
-                        <h3 class="blog-post-title">${post.title}</h3>
-                        <p class="blog-post-excerpt">${post.excerpt}</p>
-                        ${post.tags && post.tags.length > 0 ? `
-                            <div class="blog-post-tags">
-                                ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
-                            </div>
-                        ` : ''}
-                        ${post.links && post.links.length > 0 ? `
-                            <div class="blog-post-links">
-                                ${post.links.map(link => `
-                                    <a href="${link.url}" class="blog-link" target="_blank" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt"></i> ${link.text}
-                                    </a>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                        <div class="blog-post-content-preview">
-                            ${this.truncateHtml(post.content, 200)}
-                        </div>
-                        <div class="blog-post-actions">
-                            <button class="blog-read-more-btn" onclick="window.contentManager.openBlogModal('${post.id}')">
-                                <i class="fas fa-book-open"></i> Read Full Post
-                            </button>
-                        </div>
-                    </div>
-                </article>
-            `;
-        }).join('');
-    }
-
-    truncateHtml(html, maxLength) {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
-        const text = tempDiv.textContent || tempDiv.innerText || '';
-        
-        if (text.length <= maxLength) return html;
-        
-        const truncated = text.substring(0, maxLength);
-        const lastSpaceIndex = truncated.lastIndexOf(' ');
-        const finalText = lastSpaceIndex > 0 ? truncated.substring(0, lastSpaceIndex) : truncated;
-        
-        return finalText + '...';
     }
 
     renderUpdates() {
@@ -311,95 +233,6 @@ class ContentManager {
             'video': 'fas fa-video'
         };
         return icons[type] || 'fas fa-link';
-    }
-
-    // Methods for admin interface to update content
-    async saveContent() {
-        try {
-            const response = await fetch('/api/content', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(this.content)
-            });
-            
-            if (response.ok) {
-                const result = await response.json();
-                console.log('Content saved successfully:', result);
-                return { success: true, message: result.message };
-            } else {
-                const error = await response.json();
-                console.error('Failed to save content:', error);
-                return { success: false, message: error.error || 'Failed to save content' };
-            }
-        } catch (error) {
-            console.error('Error saving content:', error);
-            return { success: false, message: 'Network error: Could not connect to server' };
-        }
-    }
-
-    addProject(project) {
-        if (!this.content.projects) this.content.projects = [];
-        project.id = 'proj_' + Date.now();
-        project.order = this.content.projects.length + 1;
-        this.content.projects.push(project);
-        this.renderProjects();
-    }
-
-    updateProject(id, updatedProject) {
-        const index = this.content.projects.findIndex(p => p.id === id);
-        if (index !== -1) {
-            this.content.projects[index] = { ...this.content.projects[index], ...updatedProject };
-            this.renderProjects();
-        }
-    }
-
-    deleteProject(id) {
-        this.content.projects = this.content.projects.filter(p => p.id !== id);
-        this.renderProjects();
-    }
-
-    addCertification(cert) {
-        if (!this.content.certifications) this.content.certifications = [];
-        cert.id = 'cert_' + Date.now();
-        cert.order = this.content.certifications.length + 1;
-        this.content.certifications.push(cert);
-        this.renderCertifications();
-    }
-
-    updateCertification(id, updatedCert) {
-        const index = this.content.certifications.findIndex(c => c.id === id);
-        if (index !== -1) {
-            this.content.certifications[index] = { ...this.content.certifications[index], ...updatedCert };
-            this.renderCertifications();
-        }
-    }
-
-    deleteCertification(id) {
-        this.content.certifications = this.content.certifications.filter(c => c.id !== id);
-        this.renderCertifications();
-    }
-
-    addUpdate(update) {
-        if (!this.content.updates) this.content.updates = [];
-        update.id = 'update_' + Date.now();
-        update.order = this.content.updates.length + 1;
-        this.content.updates.push(update);
-        this.renderUpdates();
-    }
-
-    updateUpdate(id, updatedUpdate) {
-        const index = this.content.updates.findIndex(u => u.id === id);
-        if (index !== -1) {
-            this.content.updates[index] = { ...this.content.updates[index], ...updatedUpdate };
-            this.renderUpdates();
-        }
-    }
-
-    deleteUpdate(id) {
-        this.content.updates = this.content.updates.filter(u => u.id !== id);
-        this.renderUpdates();
     }
 
     renderPersonalInfo() {
@@ -584,91 +417,6 @@ class ContentManager {
         }
         
         type();
-    }
-
-    // Blog modal functionality
-    openBlogModal(postId) {
-        const post = this.content.blog.find(p => p.id === postId);
-        if (!post) return;
-
-        const modal = document.getElementById('blog-modal');
-        const modalTitle = modal.querySelector('.blog-modal-title');
-        const modalDate = modal.querySelector('.blog-modal-date');
-        const modalAuthor = modal.querySelector('.blog-modal-author');
-        const modalImages = modal.querySelector('.blog-modal-images');
-        const modalContent = modal.querySelector('.blog-modal-content-text');
-        const modalTags = modal.querySelector('.blog-modal-tags');
-        const modalLinks = modal.querySelector('.blog-modal-links');
-
-        // Format date
-        const publishDate = new Date(post.publishDate);
-        const formattedDate = publishDate.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        });
-
-        // Populate modal content
-        modalTitle.textContent = post.title;
-        modalDate.textContent = formattedDate;
-        modalAuthor.textContent = `by ${post.author}`;
-        
-        // Images
-        if (post.images && post.images.length > 0) {
-            modalImages.innerHTML = post.images.map(img => `
-                <div class="blog-modal-image">
-                    <img src="${img.url}" alt="${img.alt || post.title}" loading="lazy">
-                    ${img.caption ? `<p class="image-caption">${img.caption}</p>` : ''}
-                </div>
-            `).join('');
-        } else {
-            modalImages.innerHTML = '';
-        }
-
-        // Content
-        modalContent.innerHTML = post.content;
-
-        // Tags
-        if (post.tags && post.tags.length > 0) {
-            modalTags.innerHTML = `
-                <div class="blog-modal-tags-container">
-                    <h4>Tags:</h4>
-                    <div class="blog-modal-tags-list">
-                        ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `;
-        } else {
-            modalTags.innerHTML = '';
-        }
-
-        // Links
-        if (post.links && post.links.length > 0) {
-            modalLinks.innerHTML = `
-                <div class="blog-modal-links-container">
-                    <h4>Related Links:</h4>
-                    <div class="blog-modal-links-list">
-                        ${post.links.map(link => `
-                            <a href="${link.url}" class="blog-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> ${link.text}
-                            </a>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        } else {
-            modalLinks.innerHTML = '';
-        }
-
-        // Show modal
-        modal.classList.add('active');
-        document.body.classList.add('modal-open');
-    }
-
-    closeBlogModal() {
-        const modal = document.getElementById('blog-modal');
-        modal.classList.remove('active');
-        document.body.classList.remove('modal-open');
     }
 
     showAllUpdates() {

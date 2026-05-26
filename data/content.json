@@ -3,8 +3,8 @@
     {
       "id": "proj_1",
       "title": "Custom Folders Image Generation",
-      "description": "A custom application that automatically generates organized folder structures with image previews, streamlining file management and organization workflows.",
       "icon": "fas fa-desktop",
+      "description": "A custom application that automatically generates organized folder structures with image previews, streamlining file management and organization workflows.",
       "tags": [
         "Model Training",
         "Image Generation",
@@ -13,9 +13,9 @@
       ],
       "links": [
         {
-          "type": "github",
+          "text": "GitHub",
           "url": "https://github.com/wyattx05/apple-folders-image-generation",
-          "text": "GitHub"
+          "type": "github"
         }
       ],
       "featured": true,
@@ -25,8 +25,8 @@
     {
       "id": "proj_2",
       "title": "HOA Website",
-      "description": "Created a homeowners association website using modern web technologies, featuring tools and information for residents on a platform that is easy for the HOA to manage.",
       "icon": "fab fa-docker",
+      "description": "Created a homeowners association website using modern web technologies, featuring tools and information for residents on a platform that is easy for the HOA to manage.",
       "tags": [
         "Squarespace",
         "SEO Setup",
@@ -34,9 +34,9 @@
       ],
       "links": [
         {
-          "type": "website",
           "text": "Website",
-          "url": "https://kingstreamhomesassociation.org"
+          "url": "https://kingstreamhomesassociation.org",
+          "type": "website"
         }
       ],
       "featured": true,
@@ -46,8 +46,8 @@
     {
       "id": "proj_1766379454058",
       "title": "Project Memories",
-      "description": "With snapchats new paywall I decided to make a way to easily download all your snapchat memories and view them in a memories view like experience! This project is still under development!",
       "icon": "fab fa-snapchat-ghost",
+      "description": "With snapchats new paywall I decided to make a way to easily download all your snapchat memories and view them in a memories view like experience! This project is still under development!",
       "tags": [
         "Python",
         "HTML",
@@ -55,9 +55,9 @@
       ],
       "links": [
         {
-          "type": "github",
           "text": "Github",
-          "url": "https://github.com/wyattx05/Project-Memories"
+          "url": "https://github.com/wyattx05/Project-Memories",
+          "type": "github"
         }
       ],
       "featured": true,
@@ -102,7 +102,6 @@
       "date": "2025-08-01",
       "tag": "Education",
       "order": 1,
-      "featured": false,
       "links": []
     },
     {
@@ -124,7 +123,6 @@
       "links": []
     }
   ],
-  "blog": [],
   "skills": [
     {
       "id": "skill_1",
@@ -176,7 +174,7 @@
       "I'm an Information Systems undergraduate at Virginia Commonwealth University with a minor in Practical AI, driven by a passion for technology, innovation, and hands-on learning.",
       "I am from the Washington, D.C. area and live in Richmond for school. I love to work on side projects and learn more about the technologies that surround me."
     ],
-    "profileImage": "assets/images/profile.jpeg",
+    "profileImage": "assets/images/profile.png",
     "resumePath": "assets/documents/WyattAnderson_Resume.pdf",
     "email": "whanderson024@gmail.com",
     "socialLinks": [
@@ -188,16 +186,6 @@
       {
         "label": "Github",
         "url": "https://github.com/wyattx05",
-        "icon": ""
-      },
-      {
-        "label": "Instagram",
-        "url": "https://instagram.com/wyattx05",
-        "icon": ""
-      },
-      {
-        "label": "Handshake",
-        "url": "https://app.joinhandshake.com/profiles/6pd9rm",
         "icon": ""
       }
     ],

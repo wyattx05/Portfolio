@@ -182,8 +182,8 @@ class ContentManager {
                         ${update.links && update.links.length > 0 ? `
                             <div class="update-links">
                                 ${update.links.map(link => `
-                                    <a href="${link.url}" class="update-link" target="_blank">
-                                        <i class="${this.getUpdateLinkIcon(link.type)}"></i> ${link.text}
+                                    <a href="${link.url}" class="update-link" target="_blank" rel="noopener noreferrer">
+                                        <i class="${this.getUpdateLinkIcon(link.type)}"></i> ${link.text || 'View Link'}
                                     </a>
                                 `).join('')}
                             </div>

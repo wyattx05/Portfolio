@@ -96,12 +96,45 @@
   ],
   "updates": [
     {
+      "id": "update_1780337552014",
+      "title": "Summer 2026 Updates",
+      "description": "This summer, I will start a volunteer internship with the City of San Jose's IT department, as well as a mentorship focused on data cleaning and Power BI with members of the FCC!",
+      "date": "2026-05-15",
+      "tag": "Update",
+      "order": 1,
+      "links": []
+    },
+    {
+      "id": "update_1780337176965",
+      "title": "Participated in the Handshake Codex Challenge",
+      "description": "Submitted my projects for the Handshake Codex Challenge! I created a program named Project Touch-Light, which allows you to either control your MacBook with your FaceTime camera using your hand as an air mouse, or use Continuity Camera to turn your Mac screen into a touchscreen by calibrating it with your iPhone camera to track your finger.",
+      "date": "2026-04-30",
+      "tag": "Competition",
+      "order": 2,
+      "links": [
+        {
+          "text": "Github",
+          "url": "https://github.com/wyattx05/Project-Touchlight",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "id": "update_1780336895214",
+      "title": "Became President for ISO",
+      "description": "Starting in the Spring 2026 semester, I have taken over as president of the Information Systems Organization! I'll be working to continue growing our organization and to create more networking opportunities between IS students and the broader IT community.",
+      "date": "2026-01-01",
+      "tag": "Leadership",
+      "order": 3,
+      "links": []
+    },
+    {
       "id": "update_1",
       "title": "Started Fall Semester at VCU",
       "description": "Beginning advanced coursework in Information Systems, AI, and machine learning.",
       "date": "2025-08-01",
       "tag": "Education",
-      "order": 1,
+      "order": 4,
       "links": []
     },
     {
@@ -110,7 +143,7 @@
       "description": "Took on the position of Webmaster for my business fraternity Alpha Kappa Psi and ISO: Information Systems Organization.",
       "date": "2025-06-01",
       "tag": "Leadership",
-      "order": 2,
+      "order": 5,
       "links": []
     },
     {
@@ -119,8 +152,14 @@
       "description": "Developed a business plan with my team proposing AI implementation for a manufacturing company.",
       "date": "2025-04-01",
       "tag": "Project",
-      "order": 3,
-      "links": []
+      "order": 6,
+      "links": [
+        {
+          "text": "Article",
+          "url": "https://business.vcu.edu/?post=strategize-present-win-vcu-business-students-participate-in-sixth-annual-business-analytics-ai-challenge",
+          "type": "website"
+        }
+      ]
     }
   ],
   "skills": [

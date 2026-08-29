@@ -18,9 +18,9 @@
           "type": "github"
         }
       ],
-      "featured": true,
+      "featured": false,
       "dateCreated": "2024-12-01",
-      "order": 1
+      "order": 4
     },
     {
       "id": "proj_2",
@@ -41,7 +41,7 @@
       ],
       "featured": true,
       "dateCreated": "2024-10-01",
-      "order": 2
+      "order": 3
     },
     {
       "id": "proj_1766379454058",
@@ -62,7 +62,27 @@
       ],
       "featured": true,
       "dateCreated": "2025-12-21",
-      "order": 3
+      "order": 2
+    },
+    {
+      "id": "proj_1788045179703",
+      "title": "ClutterCut",
+      "icon": "fas fa-photo-film",
+      "description": "A smart camera roll cleaner that automatically groups photos taken at the same time and place into stacks, making it fast and effortless to delete duplicates and keep only your best shots.",
+      "tags": [
+        "Swift",
+        "PhotoKit"
+      ],
+      "links": [
+        {
+          "text": "Github",
+          "url": "https://github.com/wyattx05/cluttercut",
+          "type": "github"
+        }
+      ],
+      "featured": true,
+      "dateCreated": "2026-08-29",
+      "order": 1
     }
   ],
   "certifications": [
@@ -96,12 +116,45 @@
   ],
   "updates": [
     {
+      "id": "update_1788044895777",
+      "title": "Fall 2026 Semester",
+      "description": "I have officially gotten back to Richmond, resuming my internship with VCU Collaboration Services and starting new classes in Database Systems and the VCU Isosceles Lab where I will develop iOS applications for VCU Health",
+      "date": "2026-08-29",
+      "tag": "School",
+      "order": 1,
+      "links": [
+        {
+          "text": "Lab",
+          "url": "https://business.vcu.edu/centers-institutes-and-labs/isosceles-lab/",
+          "type": "website"
+        }
+      ]
+    },
+    {
+      "id": "update_1788044710722",
+      "title": "End of FCC Mentorship",
+      "description": "My summer mentorship project with the Federal Communications Commission, where I cleaned data on reported corporations and put together an interactive dashboard in Power BI, learning to use the program for the first time.",
+      "date": "2026-08-04",
+      "tag": "Mentorship",
+      "order": 2,
+      "links": []
+    },
+    {
+      "id": "update_1788044553925",
+      "title": "End of City of San Jose Internship",
+      "description": "After spending the summer in San Jose, I completed my summer internship, creating a full knowledge base for the city's new ITSM system.",
+      "date": "2026-07-24",
+      "tag": "Internship",
+      "order": 3,
+      "links": []
+    },
+    {
       "id": "update_1780337552014",
       "title": "Summer 2026 Updates",
       "description": "This summer, I will start a volunteer internship with the City of San Jose's IT department, as well as a mentorship focused on data cleaning and Power BI with members of the FCC!",
       "date": "2026-05-15",
       "tag": "Update",
-      "order": 1,
+      "order": 4,
       "links": []
     },
     {
@@ -110,7 +163,7 @@
       "description": "Submitted my projects for the Handshake Codex Challenge! I created a program named Project Touch-Light, which allows you to either control your MacBook with your FaceTime camera using your hand as an air mouse, or use Continuity Camera to turn your Mac screen into a touchscreen by calibrating it with your iPhone camera to track your finger.",
       "date": "2026-04-30",
       "tag": "Competition",
-      "order": 2,
+      "order": 5,
       "links": [
         {
           "text": "Github",
@@ -125,7 +178,7 @@
       "description": "Starting in the Spring 2026 semester, I have taken over as president of the Information Systems Organization! I'll be working to continue growing our organization and to create more networking opportunities between IS students and the broader IT community.",
       "date": "2026-01-01",
       "tag": "Leadership",
-      "order": 3,
+      "order": 6,
       "links": []
     },
     {
@@ -134,7 +187,7 @@
       "description": "Beginning advanced coursework in Information Systems, AI, and machine learning.",
       "date": "2025-08-01",
       "tag": "Education",
-      "order": 4,
+      "order": 7,
       "links": []
     },
     {
@@ -143,7 +196,7 @@
       "description": "Took on the position of Webmaster for my business fraternity Alpha Kappa Psi and ISO: Information Systems Organization.",
       "date": "2025-06-01",
       "tag": "Leadership",
-      "order": 5,
+      "order": 8,
       "links": []
     },
     {
@@ -152,7 +205,7 @@
       "description": "Developed a business plan with my team proposing AI implementation for a manufacturing company.",
       "date": "2025-04-01",
       "tag": "Project",
-      "order": 6,
+      "order": 9,
       "links": [
         {
           "text": "Article",
